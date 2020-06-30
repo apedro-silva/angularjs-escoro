@@ -1,0 +1,17 @@
+<h1>Hello {{$ctrl.name}}!</h1>
+<p>
+  Start editing <b>home/home.html</b> :)
+
+  <select name="availableTransportService" class="form-control"  ng-model="selectPersons" multiple style="width:80%">
+	  <option ng-repeat="p in person" value="{{p}}">{{p.name}}</option>
+</select>
+<button type="button" ng-click="transferPerson()">OK</button>
+<table class="table">
+	<tbody>
+		<tr ng-repeat="p in persons" ng-show="!p.isPreselected">
+			<td colspan="9" style="font-weight: bold">{{p.name}}</td>
+		</tr>
+	</tbody>
+</table>
+
+</p>
