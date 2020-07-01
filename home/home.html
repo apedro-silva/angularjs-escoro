@@ -1,15 +1,22 @@
 <h1>Hello {{$ctrl.name}}!</h1>
 <p>
   Start editing <b>home/home.html</b> :)
-
-  <select name="availableTransportService" class="form-control"  ng-model="selectPersons" multiple style="width:80%">
-	  <option ng-repeat="p in person" value="{{p}}">{{p.name}}</option>
+<div>
+  <select name="availableTransportService" class="form-control"  ng-model="selectedPersons" multiple style="width:80%">
+	  <option ng-repeat="p in persons" ng-value="{{p.id}}">{{p}}</option>
 </select>
-<button type="button" ng-click="transferPerson()">OK</button>
+</div>
+<button type="button" ng-click="transferPerson()">Transfer Person</button>
+<div>
+<select name="mySelect" id="mySelect" multiple
+      ng-options="p.name for p in persons track by p.id"
+      ng-model="selectedTS"></select>
+</div>
+<button type="button" ng-click="transferTS()">Transfer TS</button>
 <table class="table">
 	<tbody>
-		<tr ng-repeat="p in persons" ng-show="!p.isPreselected">
-			<td colspan="9" style="font-weight: bold">{{p.name}}</td>
+		<tr ng-repeat="p in persons" ng-show="p.isVisible">
+			<td colspan="9" style="font-weight: bold">{{p}}</td>
 		</tr>
 	</tbody>
 </table>
