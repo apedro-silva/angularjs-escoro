@@ -10,7 +10,8 @@
 <div>
 <select name="mySelect" id="mySelect" multiple
       ng-options="p.name for p in persons track by p.id"
-      ng-model="selectedTS"></select>
+      ng-model="selectedTS">
+</select>
 </div>
 <button type="button" ng-click="transferTS()">Transfer TS</button>
 <table class="table">
