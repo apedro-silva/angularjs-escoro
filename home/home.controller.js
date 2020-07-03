@@ -7,9 +7,9 @@ class HomeCtrl {
         {name : "Pedro",id : 2, isPreselected:false}
     ];
     $scope.persons = [
-        {name : "Antonio",id : 1, isPreselected:false},
-        {name : "Pedro",id : 2, isPreselected:false},
-        {name : "Silva",id : 3, isPreselected:false}
+        {name : "Antonio",id : 1, isPreselected:false, productFamily:1},
+        {name : "Pedro",id : 2, isPreselected:false, productFamily:2},
+        {name : "Silva",id : 3, isPreselected:false, productFamily:1}
     ];
     //$scope.persons = $scope.person.slice();
 
@@ -23,27 +23,35 @@ class HomeCtrl {
         isVisible : false,
         name : person.name,
         id : person.id,
-        isPreselected : person.isPreselected
+        isPreselected : person.isPreselected,
+        productFamily : person.productFamily
       }
     });
 
     $scope.transferPerson = function() {
       $scope.persons.filter(word => $scope.selectedPersons && $scope.selectedPersons.some((element) => element==word.id)).forEach(e => e.isVisible=true);
-      // $scope.persons.forEach(p=>{
-      //   if (!$scope.selectedPersons) return;
-      //   if ($scope.selectedPersons.some((element) => element==p.id))
-      //     p.isVisible=true;
-      // });
     }
 
     $scope.transferTS = function() {
       $scope.persons.filter(word => $scope.selectedTS && $scope.selectedTS.some((element) => element.id==word.id)).forEach(e => e.isVisible=true);
-      // $scope.persons.forEach(p=>{
-      //   if (!$scope.selectedTS) return;
-      //   if ($scope.selectedTS.some((element) => element.id==p.id))
-      //     p.isVisible=true;
-      // });
     }    
+    
+    $scope.onlyUnique = function (value, index, self) {
+        return self.indexOf(value) === index;
+    };
+
+    $scope.orderGroups = function (a, b) {
+        var sortingArr = [2, 1, 9];
+        return sortingArr.indexOf(a) - sortingArr.indexOf(b);
+    };
+
+    $scope.groups = $scope.persons.map(function (x) { return x.productFamily; }).filter($scope.onlyUnique).sort($scope.orderGroups);
+
+    //$scope.$watchCollection('optionDataSrv.charges', function (newVal) {
+    //    $scope.charges = newVal;
+    //    $scope.groups = $scope.charges.map(function (x) { return x.productFamily; }).filter($scope.onlyUnique).sort($scope.orderGroups);
+    //});
+
   }
   
 }
