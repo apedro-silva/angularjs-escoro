@@ -11,14 +11,25 @@ class HomeCtrl {
         {name : "Pedro",id : 2, isPreselected:false, productFamily:2},
         {name : "Silva",id : 3, isPreselected:false, productFamily:1}
     ];
-    //$scope.persons = $scope.person.slice();
+   //$scope.persons=null;
 
     $scope.filterItems = function(arr, query) {
       return arr.filter(function (el) {
         return el.id == query.id;
       })
     }
-    $scope.persons = $scope.persons.map(function (person) {
+    // $scope.persons = $scope.persons.map(function (person) {
+    //   return {
+    //     isVisible : false,
+    //     name : person.name,
+    //     id : person.id,
+    //     isPreselected : person.isPreselected,
+    //     productFamily : person.productFamily
+    //   }
+    // });
+
+    $scope.groups = [
+      {grpId:1, person: $scope.persons && $scope.persons.map(function (person) {
       return {
         isVisible : false,
         name : person.name,
@@ -26,7 +37,46 @@ class HomeCtrl {
         isPreselected : person.isPreselected,
         productFamily : person.productFamily
       }
-    });
+    })},
+      {grpId:2, person: $scope.persons && $scope.persons.map(function (person) {
+      return {
+        isVisible : false,
+        name : person.name,
+        id : person.id,
+        isPreselected : person.isPreselected,
+        productFamily : person.productFamily
+      }
+    })},
+      {grpId:3, person: $scope.persons && $scope.persons.map(function (person) {
+      return {
+        isVisible : false,
+        name : person.name,
+        id : person.id,
+        isPreselected : person.isPreselected,
+        productFamily : person.productFamily
+      }
+    })}];
+
+var kvArray = [{key: 1, value: 10}, 
+               {key: 2, value: 20}, 
+               {key: 3, value: 30}]
+//kvArray=null;
+$scope.reformattedArray = kvArray && kvArray.map(obj => {
+   let rObj = {}
+   rObj[obj.key] = obj.value
+   return rObj
+});
+
+
+    $scope.xpto = function (person) {
+      return {
+        isVisible : false,
+        name : person.name,
+        id : person.id,
+        isPreselected : person.isPreselected,
+        productFamily : person.productFamily
+      }
+    };
 
     $scope.transferPerson = function() {
       $scope.persons.filter(word => $scope.selectedPersons && $scope.selectedPersons.some((element) => element==word.id)).forEach(e => e.isVisible=true);
@@ -44,13 +94,6 @@ class HomeCtrl {
         var sortingArr = [2, 1, 9];
         return sortingArr.indexOf(a) - sortingArr.indexOf(b);
     };
-
-    $scope.groups = $scope.persons.map(function (x) { return x.productFamily; }).filter($scope.onlyUnique).sort($scope.orderGroups);
-
-    //$scope.$watchCollection('optionDataSrv.charges', function (newVal) {
-    //    $scope.charges = newVal;
-    //    $scope.groups = $scope.charges.map(function (x) { return x.productFamily; }).filter($scope.onlyUnique).sort($scope.orderGroups);
-    //});
 
   }
   

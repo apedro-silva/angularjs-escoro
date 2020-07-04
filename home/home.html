@@ -1,25 +1,20 @@
 <h1>Hello {{$ctrl.name}}!</h1>
 <p>
   Start editing <b>home/home.html</b> :)
-<div>
-  <select name="availableTransportService" class="form-control"  ng-model="selectedPersons" multiple style="width:80%">
-	  <option ng-repeat="p in persons" ng-value="{{p.id}}">{{p}}</option>
-</select>
+
+<div ng-repeat="group in groups">
+  <table class="table">
+    <tbody>
+      <tr ng-repeat="p in group.person track by p.id">
+        <td>{{p.id}}</td>
+        <td>{{group.grpId}}</td>
+        <td><input type="text" ng-model="p.name"></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<button type="button" ng-click="transferPerson()">Transfer Person</button>
-<div>
-<select name="mySelect" id="mySelect" multiple
-      ng-options="p.name for p in persons track by p.id"
-      ng-model="selectedTS">
-</select>
-</div>
-<button type="button" ng-click="transferTS()">Transfer TS</button>
-<table class="table">
-	<tbody>
-		<tr ng-repeat="p in persons" ng-show="p.isVisible">
-			<td colspan="9" style="font-weight: bold">{{p}}</td>
-		</tr>
-	</tbody>
-</table>
-<label>{{groups}}</label>
-</p>
+
+
+<div ng-repeat="group in reformattedArray">
+  <div>{{group}}</div>
+</div>  
