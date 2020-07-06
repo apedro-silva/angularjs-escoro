@@ -18,3 +18,19 @@
 <div ng-repeat="group in reformattedArray">
   <div>{{group}}</div>
 </div>  
+
+<div>
+  <div>{{model}}</div>
+</div>  
+
+<select ng-model="hasBafValue"
+  ng-options="p.name for p in persons track by p.id">
+</select>
+<button ng-click="getNameId()">test</button>
+
+</p>
+<select class="form-control actionInputSize" id="adjType"
+      ng-options="ad.id as ad.name for ad in persons"
+      ng-model="massAdjustmentType">
+</select>
+<button ng-click="getPerson()">test</button>

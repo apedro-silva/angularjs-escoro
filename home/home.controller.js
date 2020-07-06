@@ -28,6 +28,16 @@ class HomeCtrl {
     //   }
     // });
 
+    $scope.model = {
+      id:1,
+      name:"antonio",
+      address : {
+        addressId : 1,
+        description:"phone",
+        contact : "123"
+      }
+    };
+
     $scope.groups = [
       {grpId:1, person: $scope.persons && $scope.persons.map(function (person) {
       return {
@@ -77,6 +87,7 @@ $scope.reformattedArray = kvArray && kvArray.map(obj => {
         productFamily : person.productFamily
       }
     };
+//$scope.hasBafValue=1;
 
     $scope.transferPerson = function() {
       $scope.persons.filter(word => $scope.selectedPersons && $scope.selectedPersons.some((element) => element==word.id)).forEach(e => e.isVisible=true);
@@ -85,7 +96,12 @@ $scope.reformattedArray = kvArray && kvArray.map(obj => {
     $scope.transferTS = function() {
       $scope.persons.filter(word => $scope.selectedTS && $scope.selectedTS.some((element) => element.id==word.id)).forEach(e => e.isVisible=true);
     }    
-    
+    $scope.getNameId = function() {
+      console.log( $scope.hasBafValue);
+    }    
+    $scope.getPerson = function() {
+      console.log( $scope.massAdjustmentType);
+    }  
     $scope.onlyUnique = function (value, index, self) {
         return self.indexOf(value) === index;
     };
